@@ -31,7 +31,7 @@ jobs:
 
     - name: Clone source code
       run: |
-        cat $GITHUB_WORKSPACE/$CONFIG_FILE >> "$GITHUB_ENV"
+        cat $GITHUB_WORKSPACE/$CONFIG_FILE | grep -v "^#.*" | grep -v "^$">> "$GITHUB_ENV"
         cat "$GITHUB_ENV"
         echo "$GITHUB_ENV"
         echo $TNAME
