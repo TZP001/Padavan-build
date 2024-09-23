@@ -9,7 +9,7 @@
 ######################################################################
 #以下选项是定义你需要的功能（y=集成,n=忽略），重新写入到.config文件
 ######################################################################
-if [ ${{ env.KERNEL }} = "4.4" ] ; then
+if [ $KERNEL= "4.4" ] ; then
 echo "CONFIG_FIRMWARE_INCLUDE_MENTOHUST=n" >> .config #MENTOHUST
 echo "CONFIG_FIRMWARE_INCLUDE_SCUTCLIENT=n" >> .config #SCUTCLIENT
 echo "CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS=n" >> .config #SS plus+
