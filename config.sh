@@ -6,10 +6,12 @@
 ######################################################################
 
 ##修改你需要编译的设备，编译前检查清楚对应的内核版本是否支持该设备
+echo $env.KERNEL
 export TNAME="MI-MINI"
 ##设置编译内核版本
 export KERNEL="4.4"
 
+$env.TNAME="I-MdfsadI"
 set TNAME="MI-MdfsadINI"
 
 TNAME="MI-法斯蒂芬森的"
