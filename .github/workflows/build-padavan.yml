@@ -19,7 +19,6 @@ env:
   CONFIG_PATH: config
   CONFIG_FILE: .config
   KERNEL: 3.4
-  TNAME: ""
   
 jobs:
   build:
@@ -33,5 +32,6 @@ jobs:
     - name: Clone source code
       run: |
         cat $GITHUB_WORKSPACE/$CONFIG_FILE >> "$GITHUB_ENV"
+        echo $TNAME
         echo ${{env.TNAME}}
-        cat $CONFIG_PATH/${{env.TNAME}}.sh
+        cat $CONFIG_PATH/$env.TNAME.sh
