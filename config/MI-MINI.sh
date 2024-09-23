@@ -49,5 +49,3 @@ echo "CONFIG_FIRMWARE_INCLUDE_WYYBIN=n" >> .config #网易云解锁GO版本执�
 echo "CONFIG_FIRMWARE_INCLUDE_ZEROTIER=n" >> .config #zerotier ~1.3M
 fi
 #########################################################################################
-
-echo "454789787987987987f98asd4f65asd32f413s2df4165sa4df65a7rw984e5f1sad6f34sd6f541sda32f4s6a5df41s3a2d4f65sad1f6s5d4f6sa5df46s5df465sd4f165sd4f165ds4f65dsf465s" >> .config 
