@@ -6,10 +6,8 @@
 ######################################################################
 
 ##修改你需要编译的设备，编译前检查清楚对应的内核版本是否支持该设备
-echo $env.KERNEL
-export TNAME="MI-MINI"
+TNAME="MI-MINI"
 ##设置编译内核版本
-export KERNEL="4.4"
+KERNEL="4.4"
 
 
-echo "TNAME=\"MI-MINI\"" >> "$GITHUB_ENV"
