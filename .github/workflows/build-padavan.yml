@@ -33,7 +33,6 @@ jobs:
     - name: Clone source code
       run: |
         chmod +x $CONFIG_SH
-        $GITHUB_WORKSPACE/$CONFIG_SH
-        echo $TNAME
+        cat $GITHUB_WORKSPACE/$CONFIG_SH >> "$GITHUB_ENV"
         echo ${{env.TNAME}}
         cat $CONFIG_PATH/${{env.TNAME}}.sh
