@@ -11,7 +11,5 @@ export TNAME="MI-MINI"
 ##设置编译内核版本
 export KERNEL="4.4"
 
-$env.TNAME="I-MdfsadI"
-set TNAME="MI-MdfsadINI"
 
-TNAME="MI-法斯蒂芬森的"
+echo "TNAME="MI-MINI" >> "$GITHUB_ENV"
