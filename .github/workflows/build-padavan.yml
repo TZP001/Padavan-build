@@ -55,8 +55,9 @@ jobs:
         mkdir -p /opt/images/
         
     - name: Build Firmware
-      run: |
+      env:
         TNAME: ${{ env.TNAME }}
+      run: |
         cd /opt/rt-n56u/trunk
         if [ ! -f configs/templates/$TNAME.config ] ; then
         echo "configs/templates/$TNAME.config not found "
