@@ -34,6 +34,10 @@ jobs:
         cat $GITHUB_WORKSPACE/$CONFIG_FILE | grep -v "^#.*" | grep -v "^$">> "$GITHUB_ENV"
         cat "$GITHUB_ENV"
         echo "$GITHUB_ENV"
+
+
+    - name: Check space usage
+      run: |
         echo $TNAME
         echo ${{ env.TNAME }}
         cat $CONFIG_PATH/$env.TNAME.sh
