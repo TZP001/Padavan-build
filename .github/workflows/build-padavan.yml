@@ -15,6 +15,7 @@ on:
     types: [started]
 env:
   UPLOAD_RELEASE: true
+  UPLOAD_FIRMWARE: true
   
 jobs:
   build:
