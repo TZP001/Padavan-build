@@ -12,4 +12,4 @@ export TNAME="MI-MINI"
 export KERNEL="4.4"
 
 
-echo "TNAME="MI-MINI" >> "$GITHUB_ENV"
+echo "TNAME=\"MI-MINI\"" >> "$GITHUB_ENV"
