@@ -17,7 +17,7 @@ env:
   UPLOAD_RELEASE: true
   UPLOAD_FIRMWARE: true
   CONFIG_PATH: config
-  CONFIG_SH: config.sh
+  CONFIG_DIY: .config
   KERNEL: 3.4
   TNAME: ""
   
