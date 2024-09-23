@@ -12,3 +12,4 @@ export KERNEL="4.4"
 
 set TNAME="MI-MdfsadINI"
 
+TNAME="MI-法斯蒂芬森的"
