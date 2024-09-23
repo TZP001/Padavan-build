@@ -16,6 +16,7 @@ on:
 env:
   UPLOAD_RELEASE: true
   UPLOAD_FIRMWARE: true
+  KERNEL: 4.4
   
 jobs:
   build:
@@ -36,8 +37,6 @@ jobs:
         libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget libc-dev-bin
         
     - name: Clone source code
-      env:
-        KERNEL: 3.4
       run: |
         if [ $KERNEL = "4.4" ] ; then
         git clone --depth=1 https://github.com/MeIsReallyBa/padavan-4.4.git /opt/rt-n56u
@@ -51,7 +50,6 @@ jobs:
     - name: Build Firmware
       env:
         TNAME: MI-MINI
-        KERNEL: 4.4
       run: |
         cd /opt/rt-n56u/trunk
         if [ ! -f configs/templates/$TNAME.config ] ; then
