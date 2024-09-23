@@ -18,7 +18,6 @@ env:
   UPLOAD_FIRMWARE: true
   CONFIG_PATH: config
   CONFIG_FILE: .config
-  KERNEL: 3.4
   
 jobs:
   build:
@@ -28,16 +27,62 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@master
+    - name: Initialization environment
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
+        sudo apt-get update
+        sudo apt install unzip libtool-bin curl cmake gperf gawk flex bison nano xxd \
+        fakeroot kmod cpio git python3-docutils gettext automake autopoint \
+        texinfo build-essential help2man pkg-config zlib1g-dev libgmp3-dev \
+        libmpc-dev libmpfr-dev libncurses5-dev libltdl-dev wget libc-dev-bin
 
-    - name: Clone source code
+    - name: Init variable
       run: |
         cat $GITHUB_WORKSPACE/$CONFIG_FILE | grep -v "^#.*" | grep -v "^$">> "$GITHUB_ENV"
-        cat "$GITHUB_ENV"
-        echo "$GITHUB_ENV"
-
-
-    - name: Check space usage
+        
+    - name: Clone source code
+      env:
+        KERNEL: ${{ env.KERNEL }}
       run: |
-        echo $TNAME
-        echo ${{ env.TNAME }}
-        cat $CONFIG_PATH/$env.TNAME.sh
+        if [ $KERNEL = "4.4" ] ; then
+        git clone --depth=1 https://github.com/MeIsReallyBa/padavan-4.4.git /opt/rt-n56u
+        else
+        git clone --depth=1 https://github.com/TZP001/rt-n56u.git /opt/rt-n56u
+        fi
+        cd /opt/rt-n56u/toolchain-mipsel
+        sh dl_toolchain.sh
+        mkdir -p /opt/images/
+        
+    - name: Build Firmware
+      env:
+        TNAME: ${{ env.TNAME }}
+      run: |
+        cd /opt/rt-n56u/trunk
+        if [ ! -f configs/templates/$TNAME.config ] ; then
+        echo "configs/templates/$TNAME.config not found "
+        exit 1
+        fi
+        cp -f configs/templates/$TNAME.config .config
+        sed -i 's/CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE=n/CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE=y/g' .config
+        ################################################################################################
+        #因不同型号配置功能不一样，所以先把配置项删除，如果你自己要添加其他的，也要写上删除这一条，切记！！！
+        ################################################################################################
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_MENTOHUST/d' .config #删除配置项MENTOHUST
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_SCUTCLIENT/d' .config #删除配置项SCUTCLIENT
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_SHADOWSOCKS/d' .config #删除配置项SS plus+
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_SSSERVER/d' .config #删除配置项SS server
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_DNSFORWARDER/d' .config #删除配置项DNSFORWARDER
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_ADBYBY/d' .config #删除配置项adbyby plus+
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_FRPC/d' .config #删除配置项adbyby plus+
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_FRPS/d' .config #删除配置项adbyby plus+
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_TUNSAFE/d' .config #删除配置项adbyby plus+
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_ALIDDNS/d' .config #删除配置项阿里DDNS
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_SMARTDNS/d' .config
+        sed -i '/CONFIG_FIRMWARE_INCLUDE_SRELAY/d' .config
+        sed -i 's/CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE=n/CONFIG_FIRMWARE_INCLUDE_OPENSSL_EXE=y/g' .config
+        ######################################################################
+        chmod +x $CONFIG_PATH/${{ TNAME }}.sh
+        $GITHUB_WORKSPACE/$CONFIG_PATH/${{ TNAME }}.sh
+        echo .config
+        
