@@ -6,10 +6,9 @@
 ######################################################################
 
 ##修改你需要编译的设备，编译前检查清楚对应的内核版本是否支持该设备
-export env.TNAME="MI-MINI"
+export TNAME="MI-MINI"
 ##设置编译内核版本
-export env.KERNEL="4.4"
+export KERNEL="4.4"
 
 set TNAME="MI-MdfsadINI"
 
-export TNAME="MI-ddd"
