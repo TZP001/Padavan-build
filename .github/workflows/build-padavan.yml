@@ -46,9 +46,9 @@ jobs:
         KERNEL: ${{ env.KERNEL }}
       run: |
         if [ $KERNEL = "4.4" ] ; then
-        git clone --depth=1 https://github.com/MeIsReallyBa/padavan-4.4.git /opt/rt-n56u
+          git clone --branch ${{ env.BRANCH_4_4 }} --depth=1 ${{ env.SRC_4_4 }} /opt/rt-n56u
         else
-        git clone --depth=1 https://github.com/TZP001/rt-n56u.git /opt/rt-n56u
+          git clone --branch ${{ env.BRANCH_3_4 }} --depth=1 ${{ env.SRC_3_4 }} /opt/rt-n56u
         fi
         cd /opt/rt-n56u/toolchain-mipsel
         sh dl_toolchain.sh
