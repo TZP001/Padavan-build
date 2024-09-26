@@ -62,7 +62,7 @@ jobs:
         
     - name: Organize files
       id: organize
-      if: env.UPLOAD_FIRMWARE == 'true' &&  steps.BUILD.outputs.build == "success" && !cancelled()
+      if: env.UPLOAD_FIRMWARE == 'true' &&  steps.BUILD.outputs.build == 'success' && !cancelled()
       run: |
         cd /opt/images
         #ls | grep -v "packages" | xargs rm -rf
