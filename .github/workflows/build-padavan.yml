@@ -51,6 +51,8 @@ jobs:
           git clone --branch ${{ env.BRANCH_3_4 }} --depth=1 ${{ env.SRC_3_4 }} /opt/rt-n56u
         fi
         cd /opt/rt-n56u/toolchain-mipsel
+        ./clean_toolchain
+        ./build_toolchain
         mkdir -p /opt/images/
         
     - name: Build Firmware
