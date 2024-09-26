@@ -88,7 +88,7 @@ jobs:
         sudo ./clear_tree
         sudo ./build_firmware_modify $TNAME 0
         sudo mv -f images/*.trx /opt/images/) && (
-        echo "build=\"success\"" >> $GITHUB_OUTPUT
+        echo "build=success" >> $GITHUB_OUTPUT
         )
         
     - name: Organize files
