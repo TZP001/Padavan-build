@@ -62,18 +62,16 @@ jobs:
         
     - name: Organize files
       id: organize
-      if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
+      if: env.UPLOAD_FIRMWARE == 'true' &&  steps.BUILD.outputs.build == "success" && !cancelled()
       run: |
-        if [ ${{ steps.BUILD.outputs.build }} == "success" ]; then 
-          cd /opt/images
-          #ls | grep -v "packages" | xargs rm -rf
-          echo "FIRMWARE=$PWD" >> $GITHUB_ENV
-          echo "status=success" >> $GITHUB_OUTPUT
-        fi
-        
+        cd /opt/images
+        #ls | grep -v "packages" | xargs rm -rf
+        echo "FIRMWARE=$PWD" >> $GITHUB_ENV
+        echo "status=success" >> $GITHUB_OUTPUT
+
     - name: Generate release tag
       id: tag
-      if: env.UPLOAD_RELEASE == 'true' && !cancelled()
+      if: env.UPLOAD_RELEASE == 'true' && steps.organize.outputs.status == 'success' && !cancelled()
       run: |
         echo "release_tag=$(date +"%Y.%m.%d-%H%M")" >> $GITHUB_OUTPUT
         touch release.txt
