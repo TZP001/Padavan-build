@@ -1,5 +1,5 @@
 # Padavan-build说明
-点击右上角的 Star 星星按钮即可开始自动编译（自己点击才会编译）。<br>
+全新编译，没有使用```dl_toolchain.sh```下载编译链<br>点击右上角的 Star :star: 按钮即可开始自动编译（自己点击才会编译）。<br>
 [github支持的Emoji表情插入](https://gist.github.com/rxaviers/7360908)
 
 |     支持设备       |     KERNEL 3.4      |     KERNEL 4.4      |        备注          |
